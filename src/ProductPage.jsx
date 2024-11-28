@@ -13,6 +13,7 @@ export default function ProductPage() {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
                 setProducts(response.data);
+                console.log("products: ", products);
             } catch (error) {
                 console.log("Error in loadData(): ", error);
             }
@@ -22,22 +23,22 @@ export default function ProductPage() {
 
     }, [])
 
-    const renderProductsV2 = () => {
-        const jsxElements = products.map(function (p) {
-            return <li key={p.id}>{p.name} ${p.price}</li>
-        })
-        return jsxElements;
-    }
+    // const renderProductsV2 = () => {
+    //     const jsxElements = products.map(function (p) {
+    //         return <li key={p.id}>{p.name} ${p.price}</li>
+    //     })
+    //     return jsxElements;
+    // }
 
-    const renderProducts = () => {
-        const jsxElements = [];
-        for (let p of products) {
-            jsxElements.push(<li key={p.id}>
-                {p.name} ${p.price}
-            </li>);
-        }
-        return jsxElements;
-    }
+    // const renderProducts = () => {
+    //     const jsxElements = [];
+    //     for (let p of products) {
+    //         jsxElements.push(<li key={p.id}>
+    //             {p.name} ${p.price}
+    //         </li>);
+    //     }
+    //     return jsxElements;
+    // }
 
     return (
         <>
@@ -58,7 +59,7 @@ export default function ProductPage() {
 
             <div className="row">
                 {products.map(p =>
-                    <div className="col-12 col-md-4 col-lg-3">
+                    <div key={p.id} className="col-12 col-md-4 col-lg-3">
                         <ProductCard
                             productName={p.name}
                             price={p.price}

@@ -16,7 +16,7 @@ export default function ShoppingCart() {
     } = useCart();
 
     const cart = getCart(); // Retrieve cart from the store
-    console.log("cart: ", cart);
+    // console.log("cart: ", cart);
 
     const { getJwt } = useJwt();
 
